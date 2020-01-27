@@ -30,3 +30,7 @@
   margin-bottom: 20px;
   display: inline-block;
 }
+
+.app .app__content .tab__content .results__container {
+  margin-top: 20px;
+}
