@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { getAvailableRoutes, addNewRoute } from '../../helpers/route-helper';
 
-import Button from '../shared/controls/Button';
-import Input from '../shared/controls/Input';
-import Table from '../shared/controls/Table';
+import Button from '../shared/controls/button/Button';
+import Input from '../shared/controls/input/Input';
+import Table from '../shared/controls/table/Table';
 
 const Routes = () => {
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { getDeliveryCost } from '../../helpers/route-helper';
 
-import Button from '../shared/controls/Button';
-import Input from '../shared/controls/Input';
+import Button from '../shared/controls/button/Button';
+import Input from '../shared/controls/input/Input';
 
 const DeliveryCost = () => {
 
