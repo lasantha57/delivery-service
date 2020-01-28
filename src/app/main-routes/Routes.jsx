@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { getAvailableRoutes, addNewRoute } from '../../helpers/route-helper';
+
 import Button from '../shared/controls/Button';
 import Input from '../shared/controls/Input';
 import Table from '../shared/controls/Table';
@@ -19,6 +20,33 @@ const Routes = () => {
         addNewRoute(`${startLocation}${endLocation}${cost}`);
         setRoutes(getAvailableRoutes());
     }
+
+    const renderRoutes = useMemo(() => {
+        if (routes.length === 0) {
+            return <div>No routes defined</div>
+        }
+
+        return (
+            <Table>
+                <thead>
+                    <tr>
+                        <th>Start Location</th>
+                        <th>End Location</th>
+                        <th>Cost $</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {routes.map((route, index) => {
+                        return <tr key={index}>
+                            <td>{route.startLocation}</td>
+                            <td>{route.endLocation}</td>
+                            <td>{route.cost}</td>
+                        </tr>
+                    })}
+                </tbody>
+            </Table>
+        )
+    }, [routes])
 
     return (
         <div className="tab">
@@ -40,24 +68,7 @@ const Routes = () => {
                 </form>
             </div>
             <div className="container">
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>Start Location</th>
-                            <th>End Location</th>
-                            <th>Cost $</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {routes.map((route, index) => {
-                            return <tr key={index}>
-                                <td>{route.startLocation}</td>
-                                <td>{route.endLocation}</td>
-                                <td>{route.cost}</td>
-                            </tr>
-                        })}
-                    </tbody>
-                </Table>
+                {renderRoutes}
             </div>
         </div>
     )
