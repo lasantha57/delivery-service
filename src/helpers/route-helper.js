@@ -27,3 +27,11 @@ export const getAvailableRoutes = () => {
 export const addNewRoute = (route) => {
     routes.push(route);
 }
+
+export const getPossibleRoutes = (from, to, stops) => {
+    return [{ routes: 'ABE', cost: 10, cheapest: true }, { routes: 'BCE', cost: 15, cheapest: false }];
+}
+
+export const getDeliveryCost = (route) => {
+    return '15';
+}
