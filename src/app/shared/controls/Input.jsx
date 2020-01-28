@@ -3,7 +3,7 @@ import './Input.css';
 
 const Input = ({ className, ...restProps }) => {
     return (
-        <input className={`form__input ${className || ''}`} {...restProps} style={{ textTransform: "uppercase" }} />
+        <input className={`form__input ${className || ''}`} {...restProps} />
     )
 }
 

@@ -16,22 +16,22 @@ const Routes = () => {
     }, []);
 
     const addRouteHandler = () => {
-        addNewRoute(`${startLocation}${endLocation}${cost}`.toUpperCase());
+        addNewRoute(`${startLocation}${endLocation}${cost}`);
         setRoutes(getAvailableRoutes());
     }
 
     return (
-        <div className="tab__content">
+        <div className="tab">
             <h4>Please add your Routes</h4>
-            <div className="form__container">
-                <form>
-                    <div className="form-group">
-                        <Input type="text" value={startLocation} onChange={(e) => setStartLocation(e.target.value)} name="startLocation" placeholder="Start From"></Input>
+            <div className="container">
+                <form className="form">
+                    <div className="form__group">
+                        <Input type="text" value={startLocation} onChange={(e) => setStartLocation(e.target.value.toUpperCase())} name="startLocation" placeholder="Start From" maxLength="1"></Input>
                     </div>
-                    <div className="form-group">
-                        <Input type="text" value={endLocation} onChange={(e) => setEndLocation(e.target.value)} name="endLocation" placeholder="To"></Input>
+                    <div className="form__group">
+                        <Input type="text" value={endLocation} onChange={(e) => setEndLocation(e.target.value.toUpperCase())} name="endLocation" placeholder="To" maxLength="1"></Input>
                     </div>
-                    <div className="form-group">
+                    <div className="form__group">
                         <Input type="number" value={cost} onChange={(e) => setCost(e.target.value)} name="cost" placeholder="Cost" min="1"></Input>
                     </div>
                     <div>
@@ -39,7 +39,7 @@ const Routes = () => {
                     </div>
                 </form>
             </div>
-            <div className="results__container">
+            <div className="container">
                 <Table>
                     <thead>
                         <tr>

@@ -5,11 +5,11 @@ import Input from '../shared/controls/Input';
 
 const DeliveryCost = () => {
     return (
-        <div className="tab__content">
+        <div className="tab">
             <h4>Find your Cost for Delivery Route</h4>
-            <div className="form__container">
-                <form>
-                    <div className="form-group">
+            <div className="container">
+                <form className="form">
+                    <div className="form__group">
                         <Input id="route" type="text" name="route" placeholder="Route"></Input>
                     </div>
                     <div>
@@ -17,7 +17,7 @@ const DeliveryCost = () => {
                     </div>
                 </form>
             </div>
-            <div className="result__container">
+            <div className="container">
 
             </div>
         </div>
