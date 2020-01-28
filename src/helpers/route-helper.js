@@ -22,10 +22,10 @@ const routesGraph = {
         D: 4, F: 2
     },
     D: {
-        E: 1,
+        E: 1
     },
     E: {
-        B: 3, A: 2
+        A: 2, B: 3
     },
     F: {
         D: 1
@@ -49,9 +49,10 @@ export const addNewRoute = (route) => {
     routes.push(route);
 }
 
-export const getPossibleRoutes = (from, end) => {
+export const getPossibleRoutes = (from, end, stops) => {
 
     const paths = calculatePossiblePaths(from, end, '').split(',');
+    const stoppers = ((parseInt(stops)) || 10) + 2;
 
     if (paths.length === 0) {
         return [];
@@ -61,10 +62,13 @@ export const getPossibleRoutes = (from, end) => {
 
     for (let i = 0; i < paths.length; i++) {
         const pathWithCost = paths[i].split('=');
-        mappedPaths.push({
-            routes: pathWithCost[0],
-            cost: parseInt(pathWithCost[1])
-        });
+        const route = pathWithCost[0];
+        if (route.length <= stoppers) {
+            mappedPaths.push({
+                routes: route,
+                cost: parseInt(pathWithCost[1])
+            });
+        }
     }
 
     return mappedPaths;

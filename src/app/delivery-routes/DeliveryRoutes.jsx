@@ -13,7 +13,7 @@ const DeliveryRoutes = () => {
     const [routes, setRoutes] = useState([]);
 
     const findRoutesHandler = () => {
-        setRoutes(getPossibleRoutes(startLocation, endLocation));
+        setRoutes(getPossibleRoutes(startLocation, endLocation, stops));
     }
 
     const renderPossibleRoutes = useMemo(() => {
