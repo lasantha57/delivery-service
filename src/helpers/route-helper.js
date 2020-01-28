@@ -11,6 +11,31 @@ const routes = [
     'FD1',
 ];
 
+const routesGraph = {
+    A: {
+        B: 1,
+        C: 4,
+        D: 10,
+    },
+    B: {
+        E: 3,
+    },
+    C: {
+        D: 4,
+        F: 2,
+    },
+    D: {
+        E: 1,
+    },
+    E: {
+        B: 3,
+        A: 2,
+    },
+    F: {
+        D: 1,
+    }
+}
+
 export const getAvailableRoutes = () => {
     const formatted = [];
     for (let i = 0; i < routes.length; i++) {
@@ -33,5 +58,21 @@ export const getPossibleRoutes = (from, to, stops) => {
 }
 
 export const getDeliveryCost = (route) => {
-    return '15';
+    let cost = 0;
+    route = route.split('-');
+
+    for (let i = 1; i < route.length; i++) {
+        const start = route[i - 1];
+        const end = route[i];
+
+        const routeCost = routesGraph[start][end]
+
+        if (!routeCost) {
+            return NaN;
+        }
+
+        cost += routeCost;
+    }
+
+    return cost;
 }
