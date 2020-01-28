@@ -13,26 +13,22 @@ const routes = [
 
 const routesGraph = {
     A: {
-        B: 1,
-        C: 4,
-        D: 10,
+        B: 1, C: 4, D: 10
     },
     B: {
-        E: 3,
+        E: 3
     },
     C: {
-        D: 4,
-        F: 2,
+        D: 4, F: 2
     },
     D: {
         E: 1,
     },
     E: {
-        B: 3,
-        A: 2,
+        B: 3, A: 2
     },
     F: {
-        D: 1,
+        D: 1
     }
 }
 
@@ -53,8 +49,52 @@ export const addNewRoute = (route) => {
     routes.push(route);
 }
 
-export const getPossibleRoutes = (from, to, stops) => {
-    return [{ routes: 'ABE', cost: 10, cheapest: true }, { routes: 'BCE', cost: 15, cheapest: false }];
+export const getPossibleRoutes = (from, end) => {
+
+    const paths = calculatePossiblePaths(from, end, '').split(',');
+
+    if (paths.length === 0) {
+        return [];
+    }
+
+    const mappedPaths = [];
+
+    for (let i = 0; i < paths.length; i++) {
+        const pathWithCost = paths[i].split('=');
+        mappedPaths.push({
+            routes: pathWithCost[0],
+            cost: parseInt(pathWithCost[1])
+        });
+    }
+
+    return mappedPaths;
+}
+
+function calculatePossiblePaths(from, end, visited, count = 0) {
+    const edges = routesGraph[from];
+
+    if (from === end) {
+        return visited + end + '=' + count;
+    }
+
+    if (visited.indexOf(visited[visited.length - 1] + from) >= 0) {
+        return '';
+    }
+
+    visited += from;
+
+    let routePaths = [];
+    for (const edge in edges) {
+        if (edges[edge] === 0) {
+            return '';
+        }
+        const route = calculatePossiblePaths(edge, end, visited, (count + edges[edge]));
+        if (route) {
+            routePaths.push(route);
+        }
+    }
+
+    return routePaths.join(',');
 }
 
 export const getDeliveryCost = (route) => {
@@ -65,13 +105,17 @@ export const getDeliveryCost = (route) => {
         const start = route[i - 1];
         const end = route[i];
 
-        const routeCost = routesGraph[start][end]
+        const node = routesGraph[start];
 
-        if (!routeCost) {
+        if (node) {
+            const routeCost = node[end];
+            if (!routeCost) {
+                return NaN;
+            }
+            cost += routeCost;
+        } else {
             return NaN;
         }
-
-        cost += routeCost;
     }
 
     return cost;

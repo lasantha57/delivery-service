@@ -9,11 +9,11 @@ const DeliveryRoutes = () => {
 
     const [startLocation, setStartLocation] = useState('');
     const [endLocation, setEndLocation] = useState('');
-    const [stops, setStops] = useState(1);
+    const [stops, setStops] = useState(10);
     const [routes, setRoutes] = useState([]);
 
     const findRoutesHandler = () => {
-        setRoutes(getPossibleRoutes());
+        setRoutes(getPossibleRoutes(startLocation, endLocation));
     }
 
     const renderPossibleRoutes = useMemo(() => {
@@ -26,7 +26,6 @@ const DeliveryRoutes = () => {
                     <tr>
                         <th>Route</th>
                         <th>Cost $</th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +33,6 @@ const DeliveryRoutes = () => {
                         return <tr key={index}>
                             <td>{item.routes}</td>
                             <td>{item.cost}</td>
-                            <td>{item.cheapest ? <span className="tag">Cheapest</span> : ''}</td>
                         </tr>
                     })}
                 </tbody>
