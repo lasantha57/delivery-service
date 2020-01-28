@@ -25,10 +25,10 @@ const Routes = () => {
             <h4>Please add your Routes</h4>
             <div className="container">
                 <form className="form">
-                    <div className="form__group">
+                    <div className="form__group form__group--margin-right">
                         <Input type="text" value={startLocation} onChange={(e) => setStartLocation(e.target.value.toUpperCase())} name="startLocation" placeholder="Start From" maxLength="1"></Input>
                     </div>
-                    <div className="form__group">
+                    <div className="form__group form__group--margin-right">
                         <Input type="text" value={endLocation} onChange={(e) => setEndLocation(e.target.value.toUpperCase())} name="endLocation" placeholder="To" maxLength="1"></Input>
                     </div>
                     <div className="form__group">

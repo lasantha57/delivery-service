@@ -25,3 +25,14 @@
   margin-bottom: 20px;
   display: inline-block;
 }
+
+.form__group--margin-right {
+  margin-right: 20px;
+}
+
+.tag {
+  background-color: #e88936;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 3px;
+}
