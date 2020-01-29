@@ -1,0 +1,19 @@
+.result__table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.result__table td,
+.result__table th {
+  text-align: left;
+  padding: 8px;
+}
+
+.result__table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.result__table th {
+  background-color: #e88936;
+  color: white;
+}

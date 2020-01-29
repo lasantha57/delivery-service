@@ -1,0 +1,17 @@
+.form__button {
+  border-radius: 5px;
+  background-color: #e88936;
+  min-width: 150px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 15px;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+.form__button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}

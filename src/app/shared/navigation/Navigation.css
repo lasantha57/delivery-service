@@ -1,0 +1,9 @@
+.nav {
+  text-decoration: none;
+  color: #333333;
+  margin: 10px;
+}
+
+.nav--active {
+  color: #e88936;
+}
