@@ -1,7 +1,7 @@
 # Eko Delivery Service
-This application rovides customers with delivery route information.
+This application provides customers with delivery route information.
 
-## Available Scripts
+## Scripts
 
 ### `npm start`
 
