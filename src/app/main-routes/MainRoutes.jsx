@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { getAvailableRoutes, addNewRoute } from '../../helpers/route-helper';
+import { validateTextInput } from '../../helpers/validate-helper';
 
 import Button from '../shared/controls/button/Button';
 import Input from '../shared/controls/input/Input';
@@ -17,7 +18,7 @@ const Routes = () => {
     }, []);
 
     const addRouteHandler = () => {
-        addNewRoute(`${startLocation}${endLocation}${cost}`);
+        addNewRoute(startLocation, endLocation, cost);
         setRoutes(getAvailableRoutes());
     }
 
@@ -48,6 +49,10 @@ const Routes = () => {
         )
     }, [routes])
 
+    const isFormValid = () => {
+        return startLocation === '' || !validateTextInput(startLocation) || endLocation === '' || !validateTextInput(endLocation) || startLocation === endLocation;
+    }
+
     return (
         <div className="tab">
             <h4>Please add your Routes</h4>
@@ -63,7 +68,7 @@ const Routes = () => {
                         <Input type="number" value={cost} onChange={(e) => setCost(e.target.value)} name="cost" placeholder="Cost" min="1"></Input>
                     </div>
                     <div>
-                        <Button type="button" disabled={!startLocation || !endLocation || startLocation === endLocation} onClick={addRouteHandler}>Add Route</Button>
+                        <Button type="button" disabled={isFormValid()} onClick={addRouteHandler}>Add Route</Button>
                     </div>
                 </form>
             </div>

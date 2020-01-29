@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { getPossibleRoutes } from '../../helpers/route-helper';
+import { validateTextInput } from '../../helpers/validate-helper';
 
 import Button from '../shared/controls/button/Button';
 import Input from '../shared/controls/input/Input';
@@ -18,7 +19,7 @@ const DeliveryRoutes = () => {
 
     const renderPossibleRoutes = useMemo(() => {
         if (routes.length === 0) {
-            return <div>No possible routes</div>
+            return <strong>No possible routes</strong>
         }
         return (
             <Table>
@@ -40,6 +41,10 @@ const DeliveryRoutes = () => {
         )
     }, [routes])
 
+    const isFormValid = () => {
+        return startLocation === '' || !validateTextInput(startLocation) || endLocation === '' || !validateTextInput(endLocation) || startLocation === endLocation;
+    }
+
     return (
         <div className="tab">
             <h4>Find your Delivery Routes</h4>
@@ -55,7 +60,7 @@ const DeliveryRoutes = () => {
                         <Input type="number" value={stops} onChange={(e) => setStops(e.target.value)} name="stops" placeholder="Stops" min="1"></Input>
                     </div>
                     <div>
-                        <Button id="find" type="button" disabled={!startLocation && !endLocation && startLocation === endLocation} onClick={findRoutesHandler}>Find Route</Button>
+                        <Button id="find" type="button" disabled={isFormValid()} onClick={findRoutesHandler}>Find Route</Button>
                     </div>
                 </form>
             </div>

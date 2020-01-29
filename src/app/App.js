@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import './App.css';
 
 import Navigation from './shared/navigation/Navigation';
-import Routes from './main-routes/Routes';
+import MainRoutes from './main-routes/MainRoutes';
 import DeliveryCost from './delivery-cost/DeliveryCost';
 import DeliveryRoutes from './delivery-routes/DeliveryRoutes';
 
@@ -13,7 +13,7 @@ function App() {
   const renderRoutes = () => {
     return (
       <Switch>
-        <Route exact path="/routes" component={Routes} />
+        <Route exact path="/routes" component={MainRoutes} />
         <Route exact path="/delivery-cost" component={DeliveryCost} />
         <Route exact path="/delivery-routes" component={DeliveryRoutes} />
         <Redirect to="/routes" />
