@@ -1,16 +1,3 @@
-const routes = [
-    'AB1',
-    'AC4',
-    'AD10',
-    'BE3',
-    'CD4',
-    'CF2',
-    'DE1',
-    'EB3',
-    'EA2',
-    'FD1',
-];
-
 const routesGraph = {
     A: {
         B: 1, C: 4, D: 10
@@ -34,19 +21,24 @@ const routesGraph = {
 
 export const getAvailableRoutes = () => {
     const formatted = [];
-    for (let i = 0; i < routes.length; i++) {
-        const route = routes[i];
-        formatted.push({
-            startLocation: route[0],
-            endLocation: route[1],
-            cost: route[2]
-        });
+
+    for (const startNode in routesGraph) {
+        const element = routesGraph[startNode];
+        for (const endNode in element) {
+            formatted.push({
+                startLocation: startNode,
+                endLocation: endNode,
+                cost: element[endNode]
+            });
+        }
     }
     return formatted;
+
+
 }
 
-export const addNewRoute = (route) => {
-    routes.push(route);
+export const addNewRoute = (startLocation, endLocation, cost) => {
+    routesGraph[startLocation][endLocation] = cost;
 }
 
 export const getPossibleRoutes = (from, end, stops) => {
