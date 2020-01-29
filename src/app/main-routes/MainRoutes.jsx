@@ -20,6 +20,13 @@ const Routes = () => {
     const addRouteHandler = () => {
         addNewRoute(startLocation, endLocation, cost);
         setRoutes(getAvailableRoutes());
+        reset();
+    }
+
+    const reset = () => {
+        setStartLocation('');
+        setEndLocation('');
+        setCost('');
     }
 
     const renderRoutes = useMemo(() => {
